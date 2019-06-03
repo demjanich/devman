@@ -15,6 +15,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN#Confusing_special-case_behavior
 
+```
+>> NaN == NaN
+<- false
+>> NaN === NaN
+<- false
+```
+
+So if NaN compared to itself returns false, then no matter what we’re going to compare it to, it will always give false. Thankfully we have a function which can check if argument is NaN - isNaN().
 
 ```
 <p id="demo"></p>
@@ -31,8 +39,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
   
   
   // false
-  res = res + (x !== x) + ": NaN == NaN<br>";
-  res = res + (y !== y) + ": NaN == NaN<br>";
+  res = res + (x !== x) + ": (x !== x)<br>";
+  res = res + (y !== y) + ": (y !== y)<br>";
   
   res = res + (NaN == NaN) + ": NaN == NaN<br>";
   res = res + (NaN == 'test') + ": NaN == 'test'<br>";
@@ -69,8 +77,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 NaN: Number('test')
 false: 'Hello'
 true: 'Hello'
-false: NaN == NaN
-false: NaN == NaN
+false: (x !== x)
+false: (y !== y)
 false: NaN == NaN
 false: NaN == 'test'
 false: 123
