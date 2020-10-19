@@ -1,4 +1,4 @@
 # JavaScript
 
-- [String](/man/string/array.md)
+- [String](/man/javascript/string.md)
 - [Array](/man/javascript/array.md)
