@@ -1,5 +1,43 @@
 # Algorithms
 
+## Array Shift, Unshift, Push, Pop, Splice
+
+```javascript
+Array.prototype.new_shift = function() {
+    let value = this[0];
+    for (let i = 0; i < this.length-1; i++) {
+        this[i] = this[i+1];
+    }
+    this.length = this.length-1
+    return value;
+}
+
+Array.prototype.new_unshift = function(...values) {
+    let val_length = values.length
+    for (let i = this.length+val_length-1; i > 0; i--) {
+        this[i] = this[i-val_length];
+    }
+
+    for (let i = 0; i < val_length; i++) {
+        this[i] = values[i];
+    }    
+}
+
+Array.prototype.new_push = function(value) {
+    this[this.length] = value;
+}
+
+Array.prototype.new_pop = function() {
+    let value = this[this.length-1];
+    this.length = this.length-1
+    return value;
+}
+
+Array.prototype.new_splice = function(...values) {
+    // TBD
+}
+```
+
 ## Sudoku
 
 1) We have a pull of sudoku numbers.
