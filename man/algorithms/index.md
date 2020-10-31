@@ -8,7 +8,7 @@ Array.prototype.new_shift = function() {
     for (let i = 0; i < this.length-1; i++) {
         this[i] = this[i+1];
     }
-    this.length = this.length-1
+    this.length--
     return value;
 }
 let numbers = [1,2,3]
