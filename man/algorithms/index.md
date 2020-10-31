@@ -11,6 +11,9 @@ Array.prototype.new_shift = function() {
     this.length = this.length-1
     return value;
 }
+let numbers = [1,2,3]
+numbers.new_shift()
+console.log(numbers) // [ 2, 3 ]
 
 Array.prototype.new_unshift = function(...values) {
     let val_length = values.length
@@ -22,16 +25,25 @@ Array.prototype.new_unshift = function(...values) {
         this[i] = values[i];
     }    
 }
+let numbers = [1,2,3]
+numbers.new_unshift(4, 5)
+console.log(numbers) // [ 4, 5, 1, 2, 3 ]
 
-Array.prototype.new_push = function(value) {
-    this[this.length] = value;
+Array.prototype.new_push = function(...values) {
+    for (let i = 0; i < values.length; i++) {
+        this[this.length] = values[i];
+    }    
 }
+let numbers = [1,2,3]
+numbers.new_push(4, 5)
+console.log(numbers) // [ 1, 2, 3, 4, 5 ]
 
 Array.prototype.new_pop = function() {
-    let value = this[this.length-1];
-    this.length = this.length-1
-    return value;
+    return this[this.length--];
 }
+let numbers = [1,2,3]
+numbers.new_pop()
+console.log(numbers) // [ 1, 2 ]
 
 Array.prototype.new_splice = function(...values) {
     // TBD
