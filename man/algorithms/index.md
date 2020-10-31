@@ -14,3 +14,75 @@ If used, then remove this value from our pool of sudoku numbers.
 8) If attempts to rearrange the numbers do not help (usually this is the 6th line), then we are trying to recreate the entire table.
 9) If there are numbers in the pool of sudoku numbers, then we take a random number from these numbers and put it in the table.
 10) We also add the selected used number to three pools: a horizontal pool, one vertical pool and one square pool.
+
+```javascript
+function Sudoku() {
+    function Generator() {
+        const numbers = [1,2,3,4,5,6,7,8,9] // 1)
+        let tab = [], yl = [], sq = []
+
+        for (let i = 0; i < numbers.length; i++) {
+            tab[i] = []
+            let xl = new Map() // 2), 3)
+            let rebuild_iterator = 0
+            
+            if (!sq[Math.floor(i / 3)])
+                sq[Math.floor(i / 3)] = []
+
+            for (let j = 0; j < numbers.length; j++) {
+
+                if (!yl[j])
+                    yl[j] = new Map() // 2), 4)
+
+                if (!sq[Math.floor(i / 3)][Math.floor(j / 3)])
+                    sq[Math.floor(i / 3)][Math.floor(j / 3)] = new Map() // 2), 5)
+
+                let sud_pull= [...numbers] // copy one dimention array, let sud_pull = digits - is a link
+
+                for (let k = sud_pull.length - 1; k > -1; k--) { // 6)
+                    if (xl.has(sud_pull[k])) {           
+                        sud_pull.splice(k, 1);
+                    } else if (yl[j].has(sud_pull[k])) {
+                        sud_pull.splice(k, 1);
+                    } else if (sq[Math.floor(i / 3)][Math.floor(j / 3)].has(sud_pull[k])) {
+                        sud_pull.splice(k, 1);
+                    }
+                }                
+
+                if (sud_pull.length == 0) { // 7) if our string is wrong, clean values and start xl from begin
+                    if (rebuild_iterator++ == 30) // 8)
+                        return [];
+                    
+                    j--; // current j is not set yet so we move counter to previous
+                    while (j > -1) {                
+                            yl[j].delete(tab[i][j])
+                            sq[Math.floor(i / 3)][Math.floor(j / 3)].delete(tab[i][j])
+                            delete tab[i][j]
+                        j--;
+                    }                
+                    xl.clear()
+                    continue
+                } else {        
+                    let digit = sud_pull[Math.floor(Math.random() * (sud_pull.length))] // 9)
+                    tab[i][j] = digit // 9)
+                    xl.set(digit,1) // 10)
+                    yl[j].set(digit,1) // 10)
+                    sq[Math.floor(i / 3)][Math.floor(j / 3)].set(digit,1) // 10)
+                }
+            }
+        }
+        return tab
+    }
+
+    let tab = []
+    while (!tab.length) {
+        tab = Generator()
+    }
+    return tab
+}
+
+const tab = Sudoku()
+for (let entites of tab) {
+    console.log(String(entites))
+}
+```
