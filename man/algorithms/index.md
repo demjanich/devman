@@ -4,12 +4,12 @@
 
 ```javascript
 Array.prototype.new_shift = function() {
-    let value = this[0];
+    let value = this[0]
     for (let i = 0; i < this.length-1; i++) {
-        this[i] = this[i+1];
+        this[i] = this[i+1]
     }
     this.length--
-    return value;
+    return value
 }
 let numbers = [1,2,3]
 numbers.new_shift()
@@ -18,11 +18,11 @@ console.log(numbers) // [ 2, 3 ]
 Array.prototype.new_unshift = function(...values) {
     let val_length = values.length
     for (let i = this.length+val_length-1; i > 0; i--) {
-        this[i] = this[i-val_length];
+        this[i] = this[i-val_length]
     }
 
     for (let i = 0; i < val_length; i++) {
-        this[i] = values[i];
+        this[i] = values[i]
     }    
 }
 let numbers = [1,2,3]
@@ -31,7 +31,7 @@ console.log(numbers) // [ 4, 5, 1, 2, 3 ]
 
 Array.prototype.new_push = function(...values) {
     for (let i = 0; i < values.length; i++) {
-        this[this.length] = values[i];
+        this[this.length] = values[i]
     }    
 }
 let numbers = [1,2,3]
@@ -39,7 +39,7 @@ numbers.new_push(4, 5)
 console.log(numbers) // [ 1, 2, 3, 4, 5 ]
 
 Array.prototype.new_pop = function() {
-    return this[this.length--];
+    return this[this.length--]
 }
 let numbers = [1,2,3]
 numbers.new_pop()
