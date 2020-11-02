@@ -91,17 +91,17 @@ function Sudoku() {
 
                 for (let k = sud_pull.length - 1; k > -1; k--) { // 6)
                     if (xl.has(sud_pull[k])) {           
-                        sud_pull.splice(k, 1);
+                        sud_pull.splice(k, 1)
                     } else if (yl[j].has(sud_pull[k])) {
-                        sud_pull.splice(k, 1);
+                        sud_pull.splice(k, 1)
                     } else if (sq[Math.floor(i / 3)][Math.floor(j / 3)].has(sud_pull[k])) {
-                        sud_pull.splice(k, 1);
+                        sud_pull.splice(k, 1)
                     }
                 }                
 
                 if (sud_pull.length == 0) { // 7) if our string is wrong, clean values and start xl from begin
                     if (rebuild_iterator++ == 30) // 8)
-                        return [];
+                        return []
                     
                     j--; // current j is not set yet so we move counter to previous
                     while (j > -1) {                
