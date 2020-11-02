@@ -103,12 +103,12 @@ function Sudoku() {
                     if (rebuild_iterator++ == 30) // 8)
                         return []
                     
-                    j--; // current j is not set yet so we move counter to previous
+                    j-- // current j is not set yet so we move counter to previous
                     while (j > -1) {                
                             yl[j].delete(tab[i][j])
                             sq[Math.floor(i / 3)][Math.floor(j / 3)].delete(tab[i][j])
                             delete tab[i][j]
-                        j--;
+                        j--
                     }                
                     xl.clear()
                     continue
