@@ -50,6 +50,44 @@ Array.prototype.new_splice = function(...values) {
 }
 ```
 
+## Hash Map
+
+```javascript
+function hashMap(queryType, query) {
+    let hashMap = new Map()
+    let getSum = 0
+    for (let i = 0; i < queryType.length; i++) {
+        switch (queryType[i]) {
+            case "insert":
+                hashMap.set(query[i][0],query[i][1])
+                break
+            case "get":
+                if (hashMap.get(query[i][0]))
+                    getSum += hashMap.get(query[i][0])
+                break
+            case "addToKey":
+                let tempHashMap = new Map()
+                for (entity of hashMap) {
+                    tempHashMap.set(entity[0] + query[i][0], entity[1])
+                    hashMap.delete(entity[0])                                     
+                }              
+                hashMap = tempHashMap  
+                break
+            case "addToValue": 
+                for (entity of hashMap) {
+                    hashMap.set(entity[0], entity[1] + query[i][0])
+                }
+        }        
+    }
+    return getSum    
+}
+
+let queryType = ['insert','insert','addToKey','addToKey','addToValue','get']
+let query = [[-1, 5],[-2, 5],[1],[1],[1, 5],[1]]
+let res = hashMap(queryType,query)
+console.log(res)
+```
+
 ## Sudoku
 
 1) We have a pull of sudoku numbers.
