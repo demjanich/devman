@@ -84,6 +84,26 @@ let res = Round(roundArray)
 console.log(res)
 ```
 
+# Count substrings in string
+
+```javascript
+function SubstringCount(str, subArray) {
+    const res = []
+    for (let i = 0; i < subArray.length; i++) {
+        res[i] = 0
+        for (let j = 0; j < str.length; j++) {
+            if (subArray[i] === str.slice(j,j+subArray[i].length)) {
+                res[i]++
+            }
+        }
+    }
+    return res
+}
+
+const res = SubstringCount("abababbc",["ab","bc","bab"])
+console.log(res)
+```
+
 ## Hash Map
 
 ```javascript
