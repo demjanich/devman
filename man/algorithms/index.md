@@ -50,6 +50,40 @@ Array.prototype.new_splice = function(...values) {
 }
 ```
 
+## Make a chain from tangled links
+
+```javascript
+const roundArray = [[1,2],[4,3],[5,1],[2,4],[3,5]]
+function Round(arr) {
+    const res = []
+    function helper(value, hArr) {        
+        for (let i = 0; i < hArr.length; i++) {
+            if (hArr[i]) {
+                if (value == hArr[i][0]) {
+                    let values = hArr[i]
+                    delete hArr[i]
+                    res[res.length] = values[1]
+                    helper(values[1], hArr)
+                } else if (value == hArr[i][1]) {
+                    let values = hArr[i]
+                    delete hArr[i]
+                    res[res.length] = values[0]
+                    helper(values[0], hArr)
+                }
+            }
+        }        
+    }
+
+    let values = arr.shift()
+    res[res.length] = values[0]
+    helper(values[0], arr)
+    return res
+}
+
+let res = Round(roundArray)
+console.log(res)
+```
+
 ## Hash Map
 
 ```javascript
