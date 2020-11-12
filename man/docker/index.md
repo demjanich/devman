@@ -1,5 +1,7 @@
 # Docker
 
+## Container Recovery
+
 If you accidentally removed your container with MySQL data trying to free up some space on the computer using such a command:
 
 ```
@@ -59,3 +61,9 @@ cp -fR /var/lib/docker/volumes/[OLD VOLUME]/_data/ib_logfile1 /var/lib/docker/vo
 
 No you can start your docker container. If you use separate docker container with Adminer, ```down``` it and create new one, becase it can cash list of databases.
 
+## Unpacking the Docker Image Into a Folder
+
+```
+mkdir rootfs
+docker export $(docker create busybox) | tar -C rootfs -xvf -
+```
